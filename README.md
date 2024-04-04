@@ -1,1 +1,49 @@
 # hyflix1.github.io
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Player Example</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        figure.wp-block-video {
+            margin: 0;
+            width: 100%;
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        figure.wp-block-video video {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+
+<figure class="wp-block-video">
+    <video controls src="http://ott-cdn.ucom.am/s32/index.m3u8"></video>
+</figure>
+
+
+<script>
+    const videos = document.querySelectorAll('video');
+
+    videos.forEach(video => {
+        video.addEventListener('play', () => {
+            // При включении одного видео, выключаем все остальные
+            videos.forEach(otherVideo => {
+                if (otherVideo !== video) {
+                    otherVideo.pause();
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
